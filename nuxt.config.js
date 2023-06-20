@@ -28,7 +28,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-
+    '@/assets/custom.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -59,5 +59,15 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    extend (config, { isDev, isClient }) {
+      // Add font loader
+      config.module.rules.push({
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]'
+        }
+      })
+    }
   }
 }

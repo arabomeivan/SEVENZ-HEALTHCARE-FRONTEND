@@ -1,20 +1,17 @@
 <template lang="">
   <div class="main">
     <div class="d-flex">
-      <aside>
-        <!-- Sidebar content -->
-        <h3>Sidebar</h3>
-        <ul>
-          <li>Menu Item 1</li>
-          <li>Menu Item 2</li>
-          <li>Menu Item 3</li>
-        </ul>
-      </aside>
+      <transition name="slide">
+        <aside v-if="togglesidebar">
+          <!-- Sidebar content -->
+          <SidebarContent @hidesidebar="hidesidebar" />
+        </aside>
+      </transition>
 
       <div class="container maincontent" style="width:flex-grow">
         <!-- Navbar -->
         <div>
-          <NavBar />
+          <NavBar @hidesidebar="hidesidebar" />
         </div>
         <!-- Main content -->
         <Nuxt />
@@ -24,11 +21,24 @@
 </template>
 <script>
 import NavBar from '~/components/Nav_Bar.vue'
+import SidebarContent from '~/components/SidebarContent.vue'
 export default {
   name: 'Dashboard',
   components:
   {
-    NavBar
+    NavBar,
+    SidebarContent
+  },
+  data () {
+    return {
+      togglesidebar: 'true'
+    }
+  },
+  methods:
+  {
+    hidesidebar (togglesidebar) {
+      this.togglesidebar = togglesidebar
+    }
   }
 }
 </script>
@@ -37,11 +47,19 @@ export default {
 {
   background: #F5F5FB;
   height: 100vh;
+  overflow: auto;
+}
+.slide-enter-active, .slide-leave-active {
+  transition: transform 0.3s ease; /* Define the transition properties */
+}
+
+.slide-enter, .slide-leave-to {
+  transform: translateX(-100%); /* Slide in or out the sidebar */
 }
 .maincontent
 {
   overflow: auto;
-  margin-left: 25%;
+  margin-left: 29%;
 }
 aside
 {
@@ -53,8 +71,17 @@ aside
   top: 0;
       left: 0;
       bottom: 0;
+      overflow-y: auto;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.12);
 }
 
+aside::-webkit-scrollbar {
+  width: 6px;
+}
+
+aside::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
 @media screen and (max-width: 480px ){
   aside{
       width: 150px;
@@ -62,8 +89,7 @@ aside
     }
     .maincontent
 {
-  overflow: auto;
-  margin-left: 37%;
+  margin-left: 0%;
 }
 }
 </style>

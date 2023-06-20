@@ -1,0 +1,41 @@
+
+.medical-record
+{
+  background: white;
+  border-radius: 5px;
+  max-width: 829px;
+  height: 801.79px;
+  margin-top: 41.21px;
+  margin-bottom: 100px;
+}
+.toggler
+{
+  display: none;
+}
+.togglesidebar
+{
+  display: none;
+}
+ul
+{
+  font-size: small;
+}
+@media screen and (max-width: 480px) {
+.icons
+{
+  margin-left: 0px !important;
+}
+ul
+{
+  font-size: small !important;
+}
+.toggler
+{
+  display: block;
+}
+.togglesidebar
+{
+  display: block;
+}
+}
+
