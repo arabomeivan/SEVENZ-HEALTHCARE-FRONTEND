@@ -7,14 +7,50 @@
       Click the tabs to view and edit patient medical details
     </div>
 
-    <div class="medical-record" />
+    <div class="medical-record">
+      <!-- <div v-if="$apollo.loading">
+        Loading...
+      </div> -->
+      <div>
+        <ul>
+          <li v-for="investor in investigations" :key="investor.id">
+            {{ investor.title }}
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import gql from 'graphql-tag'
+
 export default {
   name: 'IndexPage',
-  layout: 'Dashboard'
+  layout: 'Dashboard',
+  apollo: {
+    investigations: {
+      query: gql`
+        query {
+          investigations {
+            id
+            title
+          }
+        }
+      `,
+      prefetch: true,
+      // Additional options for GET request
+      fetchPolicy: 'network-only',
+      context: {
+        method: 'GET'
+      }
+    }
+  },
+  watch: {
+    todos (newTodos) {
+      console.log('Fetched todos:', newTodos)
+    }
+  }
 }
 </script>
 <style scoped>

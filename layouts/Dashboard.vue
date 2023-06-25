@@ -8,7 +8,7 @@
         </aside>
       </transition>
 
-      <div class="container maincontent" style="width:flex-grow">
+      <div class="container maincontent" style="width:flex-grow" @click="toggle">
         <!-- Navbar -->
         <div>
           <NavBar @hidesidebar="hidesidebar" />
@@ -38,6 +38,10 @@ export default {
   {
     hidesidebar (togglesidebar) {
       this.togglesidebar = togglesidebar
+    },
+
+    toggle () {
+      this.togglesidebar = !this.togglesidebar
     }
   }
 }

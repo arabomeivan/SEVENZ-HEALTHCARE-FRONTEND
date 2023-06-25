@@ -1,3 +1,4 @@
+require('dotenv').config()
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -47,7 +48,8 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@nuxtjs/apollo'
   ],
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -68,6 +70,19 @@ export default {
           name: '[path][name].[ext]'
         }
       })
+    }
+  },
+  apollo: {
+    clientConfigs: {
+      default: {
+        httpEndpoint: process.env.BACKEND_ENDPOINT,
+        httpLinkOptions:
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.TOKEN}`
+          }
+        }
+      }
     }
   }
 }
