@@ -14,7 +14,7 @@
           <NavBar @hidesidebar="hidesidebar" />
         </div>
         <!-- Main content -->
-        <div @click="toggle">
+        <div>
           <Nuxt />
         </div>
       </div>
