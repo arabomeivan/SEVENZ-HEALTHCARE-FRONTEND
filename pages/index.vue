@@ -12,11 +12,16 @@
         Loading...
       </div> -->
       <div>
-        <ul>
-          <li v-for="investor in investigations" :key="investor.id">
-            {{ investor.title }}
-          </li>
-        </ul>
+        <div class="container" style="margin-top:46.79px;">
+          <div class="row">
+            <div v-for="investor in investigations" :key="investor.id" class="col-md-3 my-4">
+              <input id="flexCheckDefault" class="form-check-input" type="checkbox" value="">
+              <label class="form-check-label" for="flexCheckDefault">
+                {{ investor.title }}
+              </label>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
