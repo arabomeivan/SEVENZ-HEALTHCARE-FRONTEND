@@ -8,13 +8,15 @@
         </aside>
       </transition>
 
-      <div class="container maincontent" style="width:flex-grow" @click="toggle">
+      <div class="container maincontent" style="width:flex-grow">
         <!-- Navbar -->
         <div>
           <NavBar @hidesidebar="hidesidebar" />
         </div>
         <!-- Main content -->
-        <Nuxt />
+        <div @click="toggle">
+          <Nuxt />
+        </div>
       </div>
     </div>
   </div>
