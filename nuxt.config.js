@@ -2,6 +2,12 @@ require('dotenv').config()
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
+   nitro: {
+    preset: 'vercel-edge',
+    vercel: {
+      regions: ['iad1'],
+    },
+  },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
